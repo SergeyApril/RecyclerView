@@ -7,21 +7,29 @@
     android:orientation="vertical"
     tools:context=".FullDetailContactFragment">
 
-    <TextView
-        android:id="@+id/tvName"
+    <LinearLayout
+        android:id="@+id/contForPerson"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvSurname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/tvAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <FrameLayout
+            android:id="@+id/contForPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/contForPersonSurname"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
+        <FrameLayout
+            android:id="@+id/contForPersonAge"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
+    </LinearLayout>
 </LinearLayout>
