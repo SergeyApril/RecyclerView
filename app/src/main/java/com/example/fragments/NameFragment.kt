@@ -1,15 +1,17 @@
 package com.example.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 
 
 class NameFragment : Fragment() {
-
+    private lateinit var onTextViewListener : OnTextViewListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,5 +28,21 @@ class NameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val tvPersonName: TextView = view.findViewById(R.id.tvPersonName)
         tvPersonName.text = arguments?.getString("name").toString()
+        tvPersonName.setOnClickListener{
+            onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonName))
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onTextViewListener = context as OnTextViewListener
+
+    }
+    interface OnTextViewListener{
+        fun onTextViewCLicked(view: View){}
+
     }
 }

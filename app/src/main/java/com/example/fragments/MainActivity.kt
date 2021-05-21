@@ -1,15 +1,17 @@
 package com.example.fragments
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
-class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener {
+class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,NameFragment.OnTextViewListener {
      lateinit var ft: FragmentTransaction
 
 
@@ -52,5 +54,32 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
         ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.contForPersonAge, lcPersonAgeFragment)
         ft.commit()
+    }
+
+    override fun onTextViewCLicked(view: View) {
+        Log.d("test","Click")
+        when(view.id){
+
+                R.id.tvPersonName -> { Toast.makeText(this, "Name", Toast.LENGTH_SHORT).show()
+                val etPersonNameFragment = EditNameFragment()
+                    ft = supportFragmentManager.beginTransaction()
+                    ft.replace(R.id.contForPersonName,etPersonNameFragment)
+                    ft.commit()
+                }
+            R.id.tvPersonSurname -> { Toast.makeText(this, "Surname", Toast.LENGTH_SHORT).show()
+                val etPersonSurnameFragment = EditSurnameFragment()
+                ft = supportFragmentManager.beginTransaction()
+                ft.replace(R.id.contForPersonSurname,etPersonSurnameFragment)
+                ft.commit()
+            }
+            R.id.tvPersonAge -> { Toast.makeText(this, "Age", Toast.LENGTH_SHORT).show()
+                val etPersonAgeFragment = EditAgeFragment()
+                ft = supportFragmentManager.beginTransaction()
+                ft.replace(R.id.contForPersonAge,etPersonAgeFragment)
+                ft.commit()
+            }
+
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 
-class AgeFragment : Fragment() {
-
+class AgeFragment : Fragment(),NameFragment.OnTextViewListener {
+    private lateinit var onTextViewListener : NameFragment.OnTextViewListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,14 @@ class AgeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val tvAge: TextView = view.findViewById(R.id.tvPersonAge)
         tvAge.text = arguments?.getInt("age").toString()
+        tvAge.setOnClickListener{
+            onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonAge))
+        }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onTextViewListener = context as NameFragment.OnTextViewListener
+    }
 
 }
