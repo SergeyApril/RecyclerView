@@ -22,6 +22,9 @@ public class ListContactDetails_Fragment : Fragment() {
     private var listOfPerson: ArrayList<Person> = arrayListOf()
     private lateinit var onButtonListener: OnButtonListener
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         onButtonListener = context as OnButtonListener
@@ -44,13 +47,13 @@ public class ListContactDetails_Fragment : Fragment() {
 
     fun initListOfPerson() {
         for (i in 0..5) {
-            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i))
+            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i))
         }
     }
 
     fun onGeneratedViewList(view: View): View {
         var linLayoutFullList: LinearLayout = view.findViewById(R.id.laFullList)
-
+        var objectPosition: Int = 0
         for (Person in listOfPerson) {
             var lpForTextViewListContacts =
                 LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)

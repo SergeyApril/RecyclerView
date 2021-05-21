@@ -23,20 +23,19 @@ class NameFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_name, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tvPersonName: TextView = view.findViewById(R.id.tvPersonName)
-        tvPersonName.text = arguments?.getString("name").toString()
-        tvPersonName.setOnClickListener {
-            onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonName))
-        }
-    }
+        var tvPersonName: TextView = view.findViewById(R.id.tvPersonName)
+        if (arguments != null) {
+            tvPersonName.text = arguments?.getString("name").toString()}
+            tvPersonName.setOnClickListener {
+                onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonName))
+            }
 
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         onTextViewListener = context as OnTextViewListener

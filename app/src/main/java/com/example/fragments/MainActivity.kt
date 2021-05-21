@@ -4,24 +4,26 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
-class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,NameFragment.OnTextViewListener {
+class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,NameFragment.OnTextViewListener,EditNameFragment.OnEditTextViewListener {
      lateinit var ft: FragmentTransaction
-
+     private lateinit var currentPerson: Person
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initFragmentListContact()
+        initFragmentListContact(savedInstanceState)
     }
 
-    private fun initFragmentListContact() {
+    private fun initFragmentListContact(savedInstanceState: Bundle?) {
         Log.d("test","Call to initFragment")
         val lcDetails = ListContactDetails_Fragment()
         ft = supportFragmentManager.beginTransaction()
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
     }
 
     override fun onButtonCLicked(person: Person) {
+        currentPerson = person
         var lcFullDetails = FullDetailContactFragment()
         var lcPersonNameFragment = NameFragment()
         var lcPersonSurnameFragment = SurnameFragment()
@@ -83,5 +86,30 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
                 ft.commit()
             }
         }
+    }
+
+    override fun onEditTextViewCLicked(view: View) {
+        var tvPersonName = NameFragment()
+        Log.d("test","Click")
+        var etPersonName: EditText = view.findViewById(R.id.etPersonName)
+        etPersonName.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
+                if (event.action == KeyEvent.ACTION_DOWN &&
+                    keyCode == KeyEvent.KEYCODE_ENTER
+                ) {
+                 //   Toast.makeText(this@MainActivity,"Najata Enter",Toast.LENGTH_SHORT).show()
+                    currentPerson.name = etPersonName.text.toString()
+                    var personNameBundle = Bundle()
+                    tvPersonName.arguments = personNameBundle
+                    personNameBundle.putString("name",currentPerson.name)
+                    Toast.makeText(this@MainActivity,currentPerson.name,Toast.LENGTH_SHORT).show()
+                    ft = supportFragmentManager.beginTransaction()
+                    ft.replace(R.id.contForPersonName,tvPersonName)
+                    ft.commit()
+                    return true
+                }
+                return false
+            }
+        })
     }
 }
