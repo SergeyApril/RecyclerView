@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class SurnameFragment : Fragment(),NameFragment.OnTextViewListener {
-    private lateinit var onTextViewListener : NameFragment.OnTextViewListener
+class SurnameFragment : Fragment(), NameFragment.OnTextViewListener {
+    private lateinit var onTextViewListener: NameFragment.OnTextViewListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class SurnameFragment : Fragment(),NameFragment.OnTextViewListener {
         super.onViewCreated(view, savedInstanceState)
         val tvSurname: TextView = view.findViewById(R.id.tvPersonSurname)
         tvSurname.text = arguments?.getString("surname").toString()
-        tvSurname.setOnClickListener{
+        tvSurname.setOnClickListener {
             onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonSurname))
         }
     }

@@ -11,7 +11,7 @@ import android.widget.TextView
 
 class FullDetailContactFragment : Fragment() {
 
-        lateinit var rootView: View
+    lateinit var rootView: View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

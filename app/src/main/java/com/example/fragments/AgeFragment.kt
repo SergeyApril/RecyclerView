@@ -9,16 +9,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 
-class AgeFragment : Fragment(),NameFragment.OnTextViewListener {
-    private lateinit var onTextViewListener : NameFragment.OnTextViewListener
+class AgeFragment : Fragment(), NameFragment.OnTextViewListener {
+    private lateinit var onTextViewListener: NameFragment.OnTextViewListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        }
+    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_age, container, false)
     }
@@ -27,7 +29,7 @@ class AgeFragment : Fragment(),NameFragment.OnTextViewListener {
         super.onViewCreated(view, savedInstanceState)
         val tvAge: TextView = view.findViewById(R.id.tvPersonAge)
         tvAge.text = arguments?.getInt("age").toString()
-        tvAge.setOnClickListener{
+        tvAge.setOnClickListener {
             onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonAge))
         }
     }

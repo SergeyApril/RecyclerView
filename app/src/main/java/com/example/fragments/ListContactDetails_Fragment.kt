@@ -20,13 +20,12 @@ import kotlin.collections.ArrayList
 public class ListContactDetails_Fragment : Fragment() {
 
     private var listOfPerson: ArrayList<Person> = arrayListOf()
-    private lateinit var onButtonListener :OnButtonListener
+    private lateinit var onButtonListener: OnButtonListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         onButtonListener = context as OnButtonListener
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,24 +33,27 @@ public class ListContactDetails_Fragment : Fragment() {
 
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
-        var v : View = inflater.inflate(R.layout.fragment_list_contact_details_,container,false)
-       return onGeneratedViewList(v)
+        var v: View = inflater.inflate(R.layout.fragment_list_contact_details_, container, false)
+        return onGeneratedViewList(v)
     }
 
-    fun initListOfPerson(){
-        for (i in 0..5 ){
-            listOfPerson.add(i,Person(UUID.randomUUID().toString(),"Name+$i",i))
+    fun initListOfPerson() {
+        for (i in 0..5) {
+            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i))
         }
     }
-    fun onGeneratedViewList(view: View):View{
-        var linLayoutFullList : LinearLayout = view.findViewById(R.id.laFullList)
 
-        for(Person  in listOfPerson){
-            var lpForTextViewListContacts = LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT)
+    fun onGeneratedViewList(view: View): View {
+        var linLayoutFullList: LinearLayout = view.findViewById(R.id.laFullList)
+
+        for (Person in listOfPerson) {
+            var lpForTextViewListContacts =
+                LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             val tvDetailContact = Button(activity)
             tvDetailContact.layoutParams = lpForTextViewListContacts
             tvDetailContact.text = Person.name
@@ -65,8 +67,8 @@ public class ListContactDetails_Fragment : Fragment() {
         return linLayoutFullList
     }
 
-    interface OnButtonListener{
-        fun onButtonCLicked(person: Person){}
+    interface OnButtonListener {
+        fun onButtonCLicked(person: Person) {}
 
     }
 
