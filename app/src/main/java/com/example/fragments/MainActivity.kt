@@ -64,18 +64,21 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
                 val etPersonNameFragment = EditNameFragment()
                     ft = supportFragmentManager.beginTransaction()
                     ft.replace(R.id.contForPersonName,etPersonNameFragment)
+                    ft.addToBackStack(null)
                     ft.commit()
                 }
             R.id.tvPersonSurname -> { Toast.makeText(this, "Surname", Toast.LENGTH_SHORT).show()
                 val etPersonSurnameFragment = EditSurnameFragment()
                 ft = supportFragmentManager.beginTransaction()
                 ft.replace(R.id.contForPersonSurname,etPersonSurnameFragment)
+                ft.addToBackStack(null)
                 ft.commit()
             }
             R.id.tvPersonAge -> { Toast.makeText(this, "Age", Toast.LENGTH_SHORT).show()
                 val etPersonAgeFragment = EditAgeFragment()
                 ft = supportFragmentManager.beginTransaction()
                 ft.replace(R.id.contForPersonAge,etPersonAgeFragment)
+                ft.addToBackStack(null)
                 ft.commit()
             }
 
