@@ -30,13 +30,14 @@ public class ListContactDetails_Fragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initListOfPerson()
 
     }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        initListOfPerson()
+
         var v : View = inflater.inflate(R.layout.fragment_list_contact_details_,container,false)
        return onGeneratedViewList(v)
     }

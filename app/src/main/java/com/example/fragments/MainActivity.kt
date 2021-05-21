@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
     }
 
     private fun initFragmentListContact() {
-        var lcDetails = ListContactDetails_Fragment()
+        Log.d("test","Call to initFragment")
+        val lcDetails = ListContactDetails_Fragment()
         ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.laMain, lcDetails)
         ft.commit()
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
         lcPersonSurnameFragment.arguments=bundlePersonSurname
         ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.laMain, lcFullDetails)
+        ft.addToBackStack(null)
         ft.commit()
         ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.contForPersonName, lcPersonNameFragment)
@@ -59,7 +61,6 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
     override fun onTextViewCLicked(view: View) {
         Log.d("test","Click")
         when(view.id){
-
                 R.id.tvPersonName -> { Toast.makeText(this, "Name", Toast.LENGTH_SHORT).show()
                 val etPersonNameFragment = EditNameFragment()
                     ft = supportFragmentManager.beginTransaction()
@@ -81,8 +82,6 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
                 ft.addToBackStack(null)
                 ft.commit()
             }
-
         }
-
     }
 }
