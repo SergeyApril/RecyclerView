@@ -1,4 +1,4 @@
-package com.example.fragments
+package com.example.recyclerViewExperiments
 
 import android.content.Context
 import android.os.Bundle
@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
+import android.widget.TextView
 
-class EditNameFragment : Fragment() {
-    private lateinit var onEditTextViewListener: OnEditTextViewListener
+class SurnameFragment : Fragment(), NameFragment.OnTextViewListener {
+    private lateinit var onTextViewListener: NameFragment.OnTextViewListener
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -19,23 +20,20 @@ class EditNameFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_name, container, false)
+        return inflater.inflate(R.layout.fragment_surname, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tvEditTextPersonName: EditText = view.findViewById(R.id.etPersonName)
-        tvEditTextPersonName.setOnClickListener{
-            onEditTextViewListener.onEditTextViewCLicked(view)
+        val tvSurname: TextView = view.findViewById(R.id.tvPersonSurname)
+        tvSurname.text = arguments?.getString("surname").toString()
+        tvSurname.setOnClickListener {
+            onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonSurname))
         }
-    }
-
-    public interface OnEditTextViewListener{
-        fun onEditTextViewCLicked(view: View) {}
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        onEditTextViewListener = context as OnEditTextViewListener
+        onTextViewListener = context as NameFragment.OnTextViewListener
     }
 }

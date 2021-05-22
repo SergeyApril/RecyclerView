@@ -1,4 +1,4 @@
-package com.example.fragments
+package com.example.recyclerViewExperiments
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

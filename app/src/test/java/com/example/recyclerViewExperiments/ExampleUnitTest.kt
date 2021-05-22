@@ -1,4 +1,4 @@
-package com.example.fragments
+package com.example.recyclerViewExperiments
 
 import org.junit.Test
 

@@ -1,26 +1,30 @@
-package com.example.fragments
+package com.example.recyclerViewExperiments
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,NameFragment.OnTextViewListener,EditNameFragment.OnEditTextViewListener {
      lateinit var ft: FragmentTransaction
      private lateinit var currentPerson: Person
+   // private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initFragmentListContact(savedInstanceState)
+        /*recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager =  LinearLayoutManager(this).apply {
+            orientation = VERTICAL
+        }*/
     }
 
     private fun initFragmentListContact(savedInstanceState: Bundle?) {

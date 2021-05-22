@@ -1,4 +1,4 @@
-package com.example.fragments
+package com.example.recyclerViewExperiments
 
 import android.content.Context
 import android.os.Bundle
@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class SurnameFragment : Fragment(), NameFragment.OnTextViewListener {
+
+class AgeFragment : Fragment(), NameFragment.OnTextViewListener {
     private lateinit var onTextViewListener: NameFragment.OnTextViewListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -20,15 +22,15 @@ class SurnameFragment : Fragment(), NameFragment.OnTextViewListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_surname, container, false)
+        return inflater.inflate(R.layout.fragment_age, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tvSurname: TextView = view.findViewById(R.id.tvPersonSurname)
-        tvSurname.text = arguments?.getString("surname").toString()
-        tvSurname.setOnClickListener {
-            onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonSurname))
+        val tvAge: TextView = view.findViewById(R.id.tvPersonAge)
+        tvAge.text = arguments?.getInt("age").toString()
+        tvAge.setOnClickListener {
+            onTextViewListener.onTextViewCLicked(view.findViewById(R.id.tvPersonAge))
         }
     }
 
@@ -36,4 +38,5 @@ class SurnameFragment : Fragment(), NameFragment.OnTextViewListener {
         super.onAttach(context)
         onTextViewListener = context as NameFragment.OnTextViewListener
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.fragments
+package com.example.recyclerViewExperiments
 
 import android.content.Context
 import android.os.Bundle
