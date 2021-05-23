@@ -15,16 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,NameFragment.OnTextViewListener,EditNameFragment.OnEditTextViewListener {
      lateinit var ft: FragmentTransaction
      private lateinit var currentPerson: Person
-   // private lateinit var recyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initFragmentListContact(savedInstanceState)
-        /*recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager =  LinearLayoutManager(this).apply {
-            orientation = VERTICAL
-        }*/
     }
 
     private fun initFragmentListContact(savedInstanceState: Bundle?) {

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -16,6 +18,8 @@ public class ListContactDetails_Fragment : Fragment() {
 
     private var listOfPerson: ArrayList<Person> = arrayListOf()
     private lateinit var onButtonListener: OnButtonListener
+    private lateinit var recyclerView: RecyclerView
+    private var adapter = PhoneBookAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,8 +32,13 @@ public class ListContactDetails_Fragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initListOfPerson()
-
+        recyclerView = View.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager =  LinearLayoutManager(this).apply {
+            orientation = LinearLayoutManager.VERTICAL
+        }
+        recyclerView.adapter = adapter
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +57,6 @@ public class ListContactDetails_Fragment : Fragment() {
 
     fun onGeneratedViewList(view: View): View {
         var linLayoutFullList: LinearLayout = view.findViewById(R.id.laFullList)
-        var objectPosition: Int = 0
         for (Person in listOfPerson) {
             var lpForTextViewListContacts =
                 LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
