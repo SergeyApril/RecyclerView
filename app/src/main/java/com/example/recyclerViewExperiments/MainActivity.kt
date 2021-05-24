@@ -17,15 +17,19 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
      lateinit var ft: FragmentTransaction
      private lateinit var currentPerson: Person
      var listOfPerson = mutableListOf<Person>()
-     private var adapter = PhoneBookAdapter()
+
+    companion object {
+        var adapter = PhoneBookAdapter()
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initListOfPerson()
-        initFragmentListContact(savedInstanceState)
         adapter.listOfPersonFr = listOfPerson
+        initFragmentListContact(savedInstanceState)
+
     }
 
     private fun initFragmentListContact(savedInstanceState: Bundle?) {
@@ -92,6 +96,7 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
             }
         }
     }
+
     fun initListOfPerson() {
         for (i in 0..100) {
             listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i))

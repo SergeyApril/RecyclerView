@@ -38,27 +38,9 @@ public class ListContactDetails_Fragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager =  LinearLayoutManager(view.context)
-        recyclerView.adapter = PhoneBookAdapter()
+        recyclerView.adapter =MainActivity.adapter
         return view
     }
-
-  /*  fun onGeneratedViewList(view: View): View {
-        var linLayoutFullList: LinearLayout = view.findViewById(R.id.laFullList)
-        for (Person in listOfPerson) {
-            var lpForTextViewListContacts =
-                LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-            val tvDetailContact = Button(activity)
-            tvDetailContact.layoutParams = lpForTextViewListContacts
-            tvDetailContact.text = Person.name
-            tvDetailContact.setOnClickListener {
-                onButtonListener.onButtonCLicked(Person)
-            }
-            linLayoutFullList.addView(tvDetailContact)
-        }
-
-
-        return linLayoutFullList
-    }*/
 
     interface OnButtonListener {
         fun onButtonCLicked(person: Person) {}
