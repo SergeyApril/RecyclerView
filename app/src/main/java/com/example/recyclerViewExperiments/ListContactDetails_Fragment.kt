@@ -16,46 +16,33 @@ import kotlin.collections.ArrayList
 
 public class ListContactDetails_Fragment : Fragment() {
 
-    private var listOfPerson: ArrayList<Person> = arrayListOf()
-    private lateinit var onButtonListener: OnButtonListener
     private lateinit var recyclerView: RecyclerView
-    private var adapter = PhoneBookAdapter
-
+    private lateinit var onButtonListener: OnButtonListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        onButtonListener = context as OnButtonListener
+      //  onButtonListener = context as OnButtonListener
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initListOfPerson()
-        recyclerView = View.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager =  LinearLayoutManager(this).apply {
-            orientation = LinearLayoutManager.VERTICAL
-        }
-        recyclerView.adapter = adapter
     }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        var v: View = inflater.inflate(R.layout.fragment_list_contact_details_, container, false)
-        return onGeneratedViewList(v)
+        var view: View = inflater.inflate(R.layout.fragment_list_contact_details_, container, false)
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager =  LinearLayoutManager(view.context)
+        recyclerView.adapter = PhoneBookAdapter()
+        return view
     }
 
-    fun initListOfPerson() {
-        for (i in 0..5) {
-            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i))
-        }
-    }
-
-    fun onGeneratedViewList(view: View): View {
+  /*  fun onGeneratedViewList(view: View): View {
         var linLayoutFullList: LinearLayout = view.findViewById(R.id.laFullList)
         for (Person in listOfPerson) {
             var lpForTextViewListContacts =
@@ -71,7 +58,7 @@ public class ListContactDetails_Fragment : Fragment() {
 
 
         return linLayoutFullList
-    }
+    }*/
 
     interface OnButtonListener {
         fun onButtonCLicked(person: Person) {}

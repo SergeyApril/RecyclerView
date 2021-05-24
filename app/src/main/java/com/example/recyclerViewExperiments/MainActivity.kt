@@ -11,16 +11,21 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
 class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,NameFragment.OnTextViewListener,EditNameFragment.OnEditTextViewListener {
      lateinit var ft: FragmentTransaction
      private lateinit var currentPerson: Person
+     var listOfPerson = mutableListOf<Person>()
+     private var adapter = PhoneBookAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initListOfPerson()
         initFragmentListContact(savedInstanceState)
+        adapter.listOfPersonFr = listOfPerson
     }
 
     private fun initFragmentListContact(savedInstanceState: Bundle?) {
@@ -87,7 +92,11 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
             }
         }
     }
-
+    fun initListOfPerson() {
+        for (i in 0..100) {
+            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i))
+        }
+    }
     override fun onEditTextViewCLicked(view: View) {
         var tvPersonName = NameFragment()
         Log.d("test","Click")

@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class PhoneBookAdapter : RecyclerView.Adapter<PhoneBookAdapter.PersonViewHolder>(){
-    private var listOfPerson = emptyList<Person>()
+    var listOfPersonFr = emptyList<Person>()
     set(value) {
         field = value
         notifyDataSetChanged()
@@ -24,19 +24,18 @@ class PhoneBookAdapter : RecyclerView.Adapter<PhoneBookAdapter.PersonViewHolder>
     }
 
     override fun getItemCount(): Int {
-        return listOfPerson.size
+        return listOfPersonFr.size
     }
 
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
-        holder.bind(listOfPerson[position])
+        holder.bind(listOfPersonFr[position])
     }
 
     public class PersonViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
     private var tvPersonNameForRecycler = itemView.findViewById<TextView>(R.id.tvPersonNameForRecycler)
-     //   private var ivPersonImageForRecycler = itemView.findViewById<ImageView>(R.id.ivPersonImageForRecycler
-      //  )
+
         fun bind(person: Person){
-            tvPersonNameForRecycler.text = person.name
+            tvPersonNameForRecycler.text = "person.name"
         }
     }
 
