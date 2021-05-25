@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,12 +27,14 @@ class PhoneBookAdapter : RecyclerView.Adapter<PhoneBookAdapter.PersonViewHolder>
     }
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         holder.bind(listOfPersonFr[position])
+
     }
     public class PersonViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
     private var tvPersonNameForRecycler = itemView.findViewById<TextView>(R.id.tvPersonNameForRecycler)
-
+        private var ivPersonAvatarForRecycler = itemView.findViewById<ImageView>(R.id.ivPersonAvatarForRecycler)
         fun bind(person: Person){
             tvPersonNameForRecycler.text = person.name
+            Glide.with(itemView.context).load(person.avatarUrl).into(ivPersonAvatarForRecycler)
         }
     }
 

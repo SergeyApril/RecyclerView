@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
 
     fun initListOfPerson() {
         for (i in 0..100) {
-            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i))
+            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i,"https://picsum.photos/200"))
         }
     }
     override fun onEditTextViewCLicked(view: View) {
