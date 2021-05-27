@@ -21,15 +21,17 @@ public class ListContactDetails_Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-      //  onButtonListener = context as OnButtonListener
+        //  onButtonListener = context as OnButtonListener
 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,8 +39,8 @@ public class ListContactDetails_Fragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_list_contact_details_, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager =  LinearLayoutManager(view.context)
-        recyclerView.adapter =MainActivity.adapter
+        recyclerView.layoutManager = LinearLayoutManager(view.context)
+        recyclerView.adapter = MainActivity.adapter
         return view
     }
 
