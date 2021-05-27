@@ -1,5 +1,8 @@
 package com.example.recyclerViewExperiments
 
+import android.app.Activity
+import android.app.Application
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -34,7 +38,12 @@ class PhoneBookAdapter : RecyclerView.Adapter<PhoneBookAdapter.PersonViewHolder>
         private var ivPersonAvatarForRecycler = itemView.findViewById<ImageView>(R.id.ivPersonAvatarForRecycler)
         fun bind(person: Person){
             tvPersonNameForRecycler.text = person.name
-            Glide.with(itemView.context).load(person.avatarUrl).into(ivPersonAvatarForRecycler)
+            Glide.with(itemView.context)
+                .load(person.avatarUrl)
+              //  .diskCacheStrategy(DiskCacheStrategy.ALL)
+               //  .skipMemoryCache(true)
+                .into(ivPersonAvatarForRecycler)
+            Log.d("Request",Glide.with(itemView.context).load(person.avatarUrl).toString())
         }
     }
 

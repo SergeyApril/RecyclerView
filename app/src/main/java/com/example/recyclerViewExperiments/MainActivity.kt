@@ -11,24 +11,55 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
+import java.io.BufferedInputStream
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.*
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,NameFragment.OnTextViewListener,EditNameFragment.OnEditTextViewListener {
      lateinit var ft: FragmentTransaction
      private lateinit var currentPerson: Person
      var listOfPerson = mutableListOf<Person>()
+    lateinit var allImagesUrl: MutableList<String>
 
     companion object {
         var adapter = PhoneBookAdapter()
     }
 
+    fun getUrl(){
+      var url: URL = URL("https://picsum.photos/v2/list")
+    var inputBaseUrl = BufferedReader(InputStreamReader(url.openStream()))
+      var inputLineString: String = inputBaseUrl.readLine()
+      inputBaseUrl.close()
+        inputLineString = inputLineString.replace("[","").replace("]","").replace("{","").replace("\"","")
+        allImagesUrl= inputLineString.split("}") as MutableList<String>
+        var urlStartPosition : Int
+        var imageCorrectUrl : String
+        var i:Int = 0
+        while ( i < allImagesUrl.size-1) {
+            urlStartPosition = allImagesUrl[i].indexOf("download_url")
+            allImagesUrl[i] = allImagesUrl[i].substring(urlStartPosition+13)
+            Log.d("test", allImagesUrl[i])
+            i++
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        thread {
+            getUrl()
+        }.join()
         initListOfPerson()
         adapter.listOfPersonFr = listOfPerson
         initFragmentListContact(savedInstanceState)
+
+
+
 
     }
 
@@ -98,8 +129,8 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
     }
 
     fun initListOfPerson() {
-        for (i in 0..100) {
-            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i,"https://picsum.photos/200"))
+        for (i in 0..30) {
+            listOfPerson.add(i, Person(UUID.randomUUID().toString(), "Name+$i", i,i,allImagesUrl[i]))
         }
     }
     override fun onEditTextViewCLicked(view: View) {
