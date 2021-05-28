@@ -20,7 +20,7 @@ import java.net.URL
 import java.util.*
 import kotlin.concurrent.thread
 
-class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonListener,
+class MainActivity : AppCompatActivity(),PhoneBookAdapter.OnButtonListener,
     NameFragment.OnTextViewListener, EditNameFragment.OnEditTextViewListener {
     lateinit var ft: FragmentTransaction
     private lateinit var currentPerson: Person
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), ListContactDetails_Fragment.OnButtonLi
         ft.commit()
     }
 
-    override fun onButtonCLicked(person: Person) {
+    override fun onButtonClicked(person: Person) {
         currentPerson = person
         var lcFullDetails = FullDetailContactFragment()
         var lcPersonNameFragment = NameFragment()

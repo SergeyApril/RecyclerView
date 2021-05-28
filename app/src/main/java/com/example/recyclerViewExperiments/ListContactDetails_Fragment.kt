@@ -17,14 +17,13 @@ import kotlin.collections.ArrayList
 public class ListContactDetails_Fragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var onButtonListener: OnButtonListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        //  onButtonListener = context as OnButtonListener
+
 
     }
 
@@ -44,10 +43,6 @@ public class ListContactDetails_Fragment : Fragment() {
         return view
     }
 
-    interface OnButtonListener {
-        fun onButtonCLicked(person: Person) {}
-
-    }
 
 
 }

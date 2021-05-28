@@ -16,38 +16,43 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PhoneBookAdapter : RecyclerView.Adapter<PhoneBookAdapter.PersonViewHolder>() {
+class PhoneBookAdapter : RecyclerView.Adapter<PhoneBookAdapter.PersonViewHolder>(){
     var listOfPersonFr = emptyList<Person>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
+    private lateinit var onButtonListener : OnButtonListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.person_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.person_item,parent,false)
+        onButtonListener = parent.context as OnButtonListener
         return PersonViewHolder(view)
     }
-
     override fun getItemCount(): Int {
         return listOfPersonFr.size
     }
-
     override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
         holder.bind(listOfPersonFr[position])
+        holder.itemView.setOnClickListener{
+            onButtonListener.onButtonClicked(listOfPersonFr[position])
+        }
+
     }
-
-    public class PersonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private var tvPersonNameForRecycler =
-            itemView.findViewById<TextView>(R.id.tvPersonNameForRecycler)
-        private var ivPersonAvatarForRecycler =
-            itemView.findViewById<ImageView>(R.id.ivPersonAvatarForRecycler)
-
-        fun bind(person: Person) {
+    public class PersonViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
+    private var tvPersonNameForRecycler = itemView.findViewById<TextView>(R.id.tvPersonNameForRecycler)
+        private var ivPersonAvatarForRecycler = itemView.findViewById<ImageView>(R.id.ivPersonAvatarForRecycler)
+        fun bind(person: Person){
             tvPersonNameForRecycler.text = person.name
             Glide.with(itemView.context)
                 .load(person.avatarUrl)
                 .into(ivPersonAvatarForRecycler)
-            Log.d("Request", Glide.with(itemView.context).load(person.avatarUrl).toString())
+            Log.d("Request",Glide.with(itemView.context).load(person.avatarUrl).toString())
         }
     }
+    interface OnButtonListener {
+        fun onButtonClicked(person: Person) {}
+
+    }
+
+
 }
